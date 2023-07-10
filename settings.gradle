@@ -21,9 +21,9 @@ dependencyResolutionManagement {
             version('android-sdk-target', '34')
 
             version('androidx-activity', '1.7.2')
-            version('androidx-compose', '1.4.3')
+            version('androidx-compose', '1.6.0-alpha01')
             version('androidx-compose-compiler', '1.4.8')
-            version('androidx-compose-material', '1.1.1')
+            version('androidx-compose-material', '1.2.0-alpha03')
 
             version('java', JavaVersion.VERSION_11.toString())
 
