@@ -21,12 +21,13 @@ dependencyResolutionManagement {
             version('android-sdk-target', '33')
 
             version('androidx-activity', '1.7.2')
-            version('androidx-compose-bom', '2023.05.01')
-            version('androidx-compose-compiler', '1.4.7')
+            version('androidx-compose', '1.4.3')
+            version('androidx-compose-compiler', '1.4.8')
+            version('androidx-compose-material', '1.1.1')
 
             version('java', JavaVersion.VERSION_11.toString())
 
-            version('kotlin', '1.8.21')
+            version('kotlin', '1.8.22')
 
 
             plugin('android-application', 'com.android.application')
@@ -40,16 +41,14 @@ dependencyResolutionManagement {
                     .versionRef('androidx-activity')
             library('androidx-compose-activity', 'androidx.activity', 'activity-compose')
                     .versionRef('androidx-activity')
-            library('androidx-compose-bom', 'androidx.compose', 'compose-bom')
-                    .versionRef('androidx-compose-bom')
             library('androidx-compose-foundation', 'androidx.compose.foundation', 'foundation')
-                    .withoutVersion()
+                    .versionRef('androidx-compose')
             library('androidx-compose-material', 'androidx.compose.material3', 'material3')
-                    .withoutVersion()
+                    .versionRef('androidx-compose-material')
             library('androidx-compose-runtime', 'androidx.compose.runtime', 'runtime')
-                    .withoutVersion()
+                    .versionRef('androidx-compose')
             library('androidx-compose-ui', 'androidx.compose.ui', 'ui')
-                    .withoutVersion()
+                    .versionRef('androidx-compose')
         }
     }
 }
