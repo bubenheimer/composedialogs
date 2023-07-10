@@ -16,9 +16,9 @@ dependencyResolutionManagement {
         libs {
             version('android-plugin', '8.0.2')
 
-            version('android-sdk-compile', 'android-33')
+            version('android-sdk-compile', 'android-34')
             version('android-sdk-min', '26')
-            version('android-sdk-target', '33')
+            version('android-sdk-target', '34')
 
             version('androidx-activity', '1.7.2')
             version('androidx-compose', '1.4.3')
