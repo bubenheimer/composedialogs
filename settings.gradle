@@ -14,20 +14,21 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         libs {
-            version('android-plugin', '8.0.2')
+            version('android-plugin', '8.1.1')
 
             version('android-sdk-compile', 'android-34')
             version('android-sdk-min', '26')
             version('android-sdk-target', '34')
 
             version('androidx-activity', '1.7.2')
-            version('androidx-compose', '1.6.0-alpha01')
-            version('androidx-compose-compiler', '1.4.8')
-            version('androidx-compose-material', '1.2.0-alpha03')
+//            version('androidx-compose', '1.6.0-alpha06')
+            version('androidx-compose', '1.5.1')
+            version('androidx-compose-compiler', '1.5.3')
+            version('androidx-compose-material', '1.2.0-alpha08')
 
             version('java', JavaVersion.VERSION_11.toString())
 
-            version('kotlin', '1.8.22')
+            version('kotlin', '1.9.10')
 
 
             plugin('android-application', 'com.android.application')
