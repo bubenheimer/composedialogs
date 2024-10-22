@@ -19,11 +19,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Yellow
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.window.Dialog
@@ -38,7 +38,11 @@ class MainActivity : ComponentActivity() {
                 var dialogSelection by remember { mutableStateOf(0) }
 
                 when (dialogSelection) {
-                    1 -> FullScreenDialog { dialogSelection = 0 }
+                    1 -> {
+                        ForceRecomposeUponConfigurationChange()
+
+                        FullScreenDialog { dialogSelection = 0 }
+                    }
                     2 -> Material3AlertDialog { dialogSelection = 0 }
                 }
 
@@ -59,20 +63,32 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun FullScreenDialog(
         onDismiss: () -> Unit
-) = Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties(
-                dismissOnBackPress = true,
-                dismissOnClickOutside = false,
-                usePlatformDefaultWidth = false,
-                decorFitsSystemWindows = true
-        )
 ) {
-    Surface(Modifier.fillMaxSize().background(Gray)) {
-        Box(
-                Modifier.fillMaxSize().background(Green),
-                contentAlignment = Center
-        ) { Text("Full screen dialog", Modifier.background(Yellow)) }
+    ForceRecomposeUponConfigurationChange()
+
+    Dialog(
+            onDismissRequest = onDismiss,
+            properties = DialogProperties(
+                    dismissOnBackPress = true,
+                    dismissOnClickOutside = false,
+                    usePlatformDefaultWidth = false,
+                    decorFitsSystemWindows = true
+            )
+    ) {
+        ForceRecomposeUponConfigurationChange()
+
+        Surface(Modifier.fillMaxSize().background(Gray)) {
+            ForceRecomposeUponConfigurationChange()
+
+            Box(
+                    Modifier.fillMaxSize().background(Green),
+                    contentAlignment = Center
+            ) {
+                ForceRecomposeUponConfigurationChange()
+
+                Text("Full screen dialog", Modifier.background(Yellow))
+            }
+        }
     }
 }
 
@@ -98,3 +114,10 @@ fun Material3AlertDialog(
                 decorFitsSystemWindows = false
         )
 )
+
+@Suppress("NOTHING_TO_INLINE")
+@Composable
+inline fun ForceRecomposeUponConfigurationChange() {
+    // Does not help; consider commenting out
+    LocalConfiguration.current
+}
