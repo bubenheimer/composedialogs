@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.android)
 }
 
@@ -8,17 +9,13 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.androidx.compose.compiler.get()
-    }
-
     namespace 'org.bubenheimer'
 
-    setCompileSdkVersion libs.versions.android.sdk.compile.get()
+    compileSdk libs.versions.android.sdk.compile.get().toInteger()
 
     defaultConfig {
-        minSdkVersion libs.versions.android.sdk.min.get()
-        targetSdkVersion libs.versions.android.sdk.target.get()
+        minSdk libs.versions.android.sdk.min.get().toInteger()
+        targetSdk libs.versions.android.sdk.target.get().toInteger()
     }
 
     compileOptions {
@@ -47,7 +44,9 @@ android {
 }
 
 dependencies {
-    implementation libs.androidx.activity.ktx
+    implementation(platform(libs.androidx.compose.bom))
+
+    implementation libs.androidx.activity
     implementation libs.androidx.compose.activity
     implementation libs.androidx.compose.foundation
     implementation libs.androidx.compose.material
